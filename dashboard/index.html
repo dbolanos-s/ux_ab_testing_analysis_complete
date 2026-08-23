@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="UX A/B Testing & Experiment Evaluation dashboard" />
+  <title>UX A/B Testing — Experiment Evaluation</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <!-- Power BI-inspired application chrome -->
+  <header class="app-bar">
+    <div class="brand-area">
+      <div class="ms-mark" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+      </div>
+      <span class="workspace">Workspaces</span>
+      <span class="slash">/</span>
+      <span class="workspace">Portfolio Analytics</span>
+      <span class="slash">/</span>
+      <strong>UX A/B Experiment.pbix</strong>
+    </div>
+
+    <div class="app-actions">
+      <span class="refresh-label">Dataset: Marketing A/B Testing</span>
+      <button class="top-action" id="resetBtn" type="button" title="Reset report view">↻ Reset view</button>
+      <button class="top-action" id="exportBtn" type="button" title="Export experiment summary">⇩ Export summary</button>
+    </div>
+  </header>
+
+  <main class="report-shell">
+    <section class="report-header">
+      <div>
+        <h1>UX A/B TESTING & EXPERIMENT EVALUATION</h1>
+        <p class="subtitle">Statistical experimentation framework for evidence-based product and UX decisions</p>
+      </div>
+
+      <div class="header-meta">
+        <div class="status-chip">
+          <span class="status-dot"></span>
+          Automated validation passed
+        </div>
+        <p>Public treatment/control case study · UX transfer framework</p>
+      </div>
+    </section>
+
+    <section class="integrity-banner">
+      <strong>Research integrity:</strong>
+      the public dataset compares <code>ad</code> treatment vs <code>psa</code> control.
+      The UX Variant A/B screens are a conceptual transfer of the framework and are not the source of these observations.
+    </section>
+
+    <!-- PAGE 1 -->
+    <section class="report-page active" id="page-overview" data-page="overview">
+      <div class="page-title-row">
+        <div>
+          <span class="eyebrow">PAGE 1</span>
+          <h2>Experiment Overview</h2>
+        </div>
+        <div class="page-note">Primary outcome: user conversion</div>
+      </div>
+
+      <div class="kpi-grid kpi-grid-6">
+        <article class="visual kpi-card">
+          <div class="visual-header"><span>Total Participants</span><span class="ellipsis">⋯</span></div>
+          <div class="kpi-value" id="kpiParticipants">—</div>
+          <div class="kpi-caption">Users in experiment</div>
+        </article>
+
+        <article class="visual kpi-card">
+          <div class="visual-header"><span>Treatment CR</span><span class="ellipsis">⋯</span></div>
+          <div class="kpi-value" id="kpiTreatmentCr">—</div>
+          <div class="kpi-caption">ad group</div>
+        </article>
+
+        <article class="visual kpi-card">
+          <div class="visual-header"><span>Control CR</span><span class="ellipsis">⋯</span></div>
+          <div class="kpi-value" id="kpiControlCr">—</div>
+          <div class="kpi-caption">psa group</div>
+        </article>
+
+        <article class="visual kpi-card accent-kpi">
+          <div class="visual-header"><span>Absolute Uplift</span><span class="ellipsis">⋯</span></div>
+          <div class="kpi-value" id="kpiAbsolute">—</div>
+          <div class="kpi-caption">Percentage points</div>
+        </article>
+
+        <article class="visual kpi-card">
+          <div class="visual-header"><span>Relative Uplift</span><span class="ellipsis">⋯</span></div>
+          <div class="kpi-value" id="kpiRelative">—</div>
+          <div class="kpi-caption">vs control baseline</div>
+        </article>
+
+        <article class="visual kpi-card decision-kpi">
+          <div class="visual-header"><span>Statistical Decision</span><span class="ellipsis">⋯</span></div>
+          <div class="kpi-value decision-value" id="kpiDecision">—</div>
+          <div class="kpi-caption">α = 0.05</div>
+        </article>
+      </div>
+
+      <div class="grid-two overview-main">
+        <article class="visual">
+          <div class="visual-header">
+            <div>
+              <span>Conversion Rate by Experiment Group</span>
+              <small>Observed probability of conversion</small>
+            </div>
+            <span class="ellipsis">⋯</span>
+          </div>
+          <div class="chart-area chart-lg"><canvas id="conversionChart"></canvas></div>
+        </article>
+
+        <article class="visual">
+          <div class="visual-header">
+            <div>
+              <span>95% Confidence Interval — Absolute Difference</span>
+              <small>Treatment minus control · percentage points</small>
+            </div>
+            <span class="ellipsis">⋯</span>
+          </div>
+
+          <div class="effect-card">
+            <div class="effect-number" id="effectEstimate">—</div>
+            <div class="effect-label">Observed absolute difference</div>
+
+            <div class="effect-scale">
+              <div class="axis-line"></div>
+              <div class="zero-line" title="No effect"></div>
+              <div class="ci-line" id="ciLine"></div>
+              <div class="effect-point" id="effectPoint"></div>
+              <span class="scale-tick tick-0">0.0</span>
+              <span class="scale-tick tick-25">0.25</span>
+              <span class="scale-tick tick-50">0.50</span>
+              <span class="scale-tick tick-75">0.75</span>
+              <span class="scale-tick tick-100">1.00 pp</span>
+            </div>
+
+            <div class="ci-readout">
+              <span>95% CI</span>
+              <strong id="ciText">—</strong>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="grid-two">
+        <article class="visual">
+          <div class="visual-header">
+            <div>
+              <span>Sample Allocation</span>
+              <small>Observed group distribution</small>
+            </div>
+            <span class="ellipsis">⋯</span>
+          </div>
+
+          <div class="allocation-wrap">
+            <div class="allocation-bar">
+              <div class="allocation-treatment" id="allocationTreatment"></div>
+              <div class="allocation-control" id="allocationControl"></div>
+            </div>
+            <div class="allocation-legend">
+              <div><span class="legend-dot treatment"></span> Treatment <strong id="treatmentUsers">—</strong></div>
+              <div><span class="legend-dot control"></span> Control <strong id="controlUsers">—</strong></div>
+            </div>
+            <p class="visual-footnote">
+              The intended randomization ratio is not documented in the CSV, so the observed imbalance is documented rather than labeled as SRM failure.
+            </p>
+          </div>
+        </article>
+
+        <article class="insight-card">
+          <div class="insight-title">Key Research Interpretation</div>
+          <p id="overviewInsight">
+            Loading experiment evidence…
+          </p>
+          <div class="evidence-strip">
+            <span class="evidence-label">Evidence standard</span>
+            <strong>Significance + uncertainty + magnitude + validity</strong>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PAGE 2 -->
+    <section class="report-page" id="page-statistics" data-page="statistics">
+      <div class="page-title-row">
+        <div>
+          <span class="eyebrow">PAGE 2</span>
+          <h2>Statistical Evaluation</h2>
+        </div>
+        <div class="page-note">Inferential evidence and effect magnitude</div>
+      </div>
+
+      <div class="kpi-grid kpi-grid-5">
+        <article class="visual kpi-card">
+          <div class="visual-header"><span>Z Statistic</span><span class="ellipsis">⋯</span></div>
+          <div class="kpi-value" id="statZ">—</div>
+          <div class="kpi-caption">Two-proportion Z-test</div>
+        </article>
+        <article class="visual kpi-card">
+          <div class="visual-header"><span>P-value</span><span class="ellipsis">⋯</span></div>
+          <div class="kpi-value small-value" id="statP">—</div>
+          <div class="kpi-caption">Two-sided</div>
+        </article>
+        <article class="visual kpi-card">
+          <div class="visual-header"><span>Risk Ratio</span><span class="ellipsis">⋯</span></div>
+          <div class="kpi-value" id="statRR">—</div>
+          <div class="kpi-caption">Treatment / Control</div>
+        </article>
+        <article class="visual kpi-card">
+          <div class="visual-header"><span>Cohen's h</span><span class="ellipsis">⋯</span></div>
+          <div class="kpi-value" id="statH">—</div>
+          <div class="kpi-caption">Standardized effect</div>
+        </article>
+        <article class="visual kpi-card">
+          <div class="visual-header"><span>Observed Power</span><span class="ellipsis">⋯</span></div>
+          <div class="kpi-value" id="statPower">—</div>
+          <div class="kpi-caption">Descriptive post-hoc</div>
+        </article>
+      </div>
+
+      <div class="grid-two stats-main">
+        <article class="visual">
+          <div class="visual-header">
+            <div>
+              <span>Evidence Summary</span>
+              <small>Primary and supporting inferential results</small>
+            </div>
+            <span class="ellipsis">⋯</span>
+          </div>
+
+          <div class="matrix-scroll">
+            <table class="matrix">
+              <thead>
+                <tr>
+                  <th>Evidence</th>
+                  <th>Estimate</th>
+                  <th>Interpretation</th>
+                </tr>
+              </thead>
+              <tbody id="evidenceTable"></tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="visual">
+          <div class="visual-header">
+            <div>
+              <span>Experiment Decision Logic</span>
+              <small>Statistical evidence is necessary, not sufficient</small>
+            </div>
+            <span class="ellipsis">⋯</span>
+          </div>
+
+          <div class="decision-flow">
+            <div class="decision-step completed">
+              <span class="step-num">1</span>
+              <div><strong>Data quality</strong><small>One row per user · no missing values</small></div>
+            </div>
+            <div class="connector"></div>
+            <div class="decision-step completed">
+              <span class="step-num">2</span>
+              <div><strong>Statistical evidence</strong><small id="decisionEvidence">p-value below α</small></div>
+            </div>
+            <div class="connector"></div>
+            <div class="decision-step completed">
+              <span class="step-num">3</span>
+              <div><strong>Effect magnitude</strong><small id="decisionMagnitude">Evaluate absolute and standardized effect</small></div>
+            </div>
+            <div class="connector"></div>
+            <div class="decision-step caution">
+              <span class="step-num">4</span>
+              <div><strong>Validity & guardrails</strong><small>Required before UX rollout</small></div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="grid-two">
+        <article class="visual">
+          <div class="visual-header">
+            <div>
+              <span>Risk Ratio & Odds Ratio</span>
+              <small>Complementary multiplicative effect measures</small>
+            </div>
+            <span class="ellipsis">⋯</span>
+          </div>
+          <div class="ratio-grid">
+            <div class="ratio-card">
+              <span>Risk Ratio</span>
+              <strong id="ratioRR">—</strong>
+              <small id="ratioRRCI">—</small>
+            </div>
+            <div class="ratio-card">
+              <span>Logistic Odds Ratio</span>
+              <strong id="ratioOR">—</strong>
+              <small id="ratioORCI">—</small>
+            </div>
+          </div>
+        </article>
+
+        <article class="insight-card practical-card">
+          <div class="insight-title">Statistical ≠ Practical Significance</div>
+          <p>
+            With a very large sample, a small standardized effect can still produce an extremely small p-value.
+            The rollout decision should therefore combine absolute uplift, confidence intervals, guardrails, and product value.
+          </p>
+          <div class="formula-line">Evidence → Effect → Uncertainty → Validity → Decision</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PAGE 3 -->
+    <section class="report-page" id="page-behavior" data-page="behavior">
+      <div class="page-title-row">
+        <div>
+          <span class="eyebrow">PAGE 3</span>
+          <h2>Behavioral Exploration</h2>
+        </div>
+        <div class="slicer">
+          <div class="slicer-label">View metric</div>
+          <div class="slicer-tiles" id="metricSlicer">
+            <button type="button" class="slicer-tile active" data-metric="conversion">Conversion Rate</button>
+            <button type="button" class="slicer-tile" data-metric="users">Users</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="explore-warning">
+        These views are descriptive. Exposure, day, and hour are not treated as randomized causal effects.
+      </div>
+
+      <div class="grid-two">
+        <article class="visual">
+          <div class="visual-header">
+            <div>
+              <span>Exposure Band</span>
+              <small id="exposureSubtitle">Observed conversion rate</small>
+            </div>
+            <span class="ellipsis">⋯</span>
+          </div>
+          <div class="chart-area chart-md"><canvas id="exposureChart"></canvas></div>
+        </article>
+
+        <article class="visual">
+          <div class="visual-header">
+            <div>
+              <span>Day of Highest Exposure</span>
+              <small id="daySubtitle">Observed conversion rate</small>
+            </div>
+            <span class="ellipsis">⋯</span>
+          </div>
+          <div class="chart-area chart-md"><canvas id="dayChart"></canvas></div>
+        </article>
+      </div>
+
+      <div class="grid-two">
+        <article class="visual">
+          <div class="visual-header">
+            <div>
+              <span>Hour of Highest Exposure</span>
+              <small id="hourSubtitle">Observed conversion rate</small>
+            </div>
+            <span class="ellipsis">⋯</span>
+          </div>
+          <div class="chart-area chart-lg"><canvas id="hourChart"></canvas></div>
+        </article>
+
+        <article class="visual">
+          <div class="visual-header">
+            <div>
+              <span>Observed Pattern Summary</span>
+              <small>Use for hypothesis generation, not causal claims</small>
+            </div>
+            <span class="ellipsis">⋯</span>
+          </div>
+          <div class="pattern-list" id="patternList"></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PAGE 4 -->
+    <section class="report-page" id="page-ux" data-page="ux">
+      <div class="page-title-row">
+        <div>
+          <span class="eyebrow">PAGE 4</span>
+          <h2>UX Experiment Framework</h2>
+        </div>
+        <div class="page-note">Conceptual transfer from statistical case study to interface experimentation</div>
+      </div>
+
+      <article class="hypothesis-banner">
+        <span>UX HYPOTHESIS</span>
+        <strong>
+          Increasing the visual prominence and action clarity of the primary checkout CTA will improve checkout completion without increasing user effort or errors.
+        </strong>
+      </article>
+
+      <div class="variant-grid">
+        <article class="visual variant-card">
+          <div class="visual-header">
+            <div>
+              <span>Variant A — Baseline</span>
+              <small>Control experience</small>
+            </div>
+            <span class="variant-tag control-tag">CONTROL</span>
+          </div>
+          <div class="variant-image-wrap">
+            <img src="assets/variant-a.png" alt="Variant A baseline checkout" />
+          </div>
+          <div class="variant-footer">
+            Baseline CTA wording and hierarchy.
+          </div>
+        </article>
+
+        <article class="visual variant-card">
+          <div class="visual-header">
+            <div>
+              <span>Variant B — Proposed</span>
+              <small>UX treatment</small>
+            </div>
+            <span class="variant-tag treatment-tag">TREATMENT</span>
+          </div>
+          <div class="variant-image-wrap">
+            <img src="assets/variant-b.png" alt="Variant B proposed checkout" />
+          </div>
+          <div class="variant-footer">
+            Clearer CTA wording and stronger primary-action hierarchy.
+          </div>
+        </article>
+      </div>
+
+      <div class="grid-two ux-bottom">
+        <article class="visual">
+          <div class="visual-header">
+            <div>
+              <span>Metric Framework</span>
+              <small>Primary, secondary, and guardrail metrics</small>
+            </div>
+            <span class="ellipsis">⋯</span>
+          </div>
+          <div class="metric-framework">
+            <div class="metric-row primary-row">
+              <span class="metric-type">PRIMARY</span>
+              <strong>Checkout Completion Rate</strong>
+              <small>Target behavior</small>
+            </div>
+            <div class="metric-row">
+              <span class="metric-type">SECONDARY</span>
+              <strong>Task Completion · Time on Task</strong>
+              <small>Interaction efficiency</small>
+            </div>
+            <div class="metric-row guardrail-row">
+              <span class="metric-type">GUARDRAILS</span>
+              <strong>Error Rate · CES · Accessibility · Abandonment</strong>
+              <small>Protect experience quality</small>
+            </div>
+          </div>
+        </article>
+
+        <article class="visual">
+          <div class="visual-header">
+            <div>
+              <span>Experiment Operating Model</span>
+              <small>From assignment to product decision</small>
+            </div>
+            <span class="ellipsis">⋯</span>
+          </div>
+          <div class="flow-image-wrap">
+            <img src="assets/experiment-flow.png" alt="Experiment operating model" />
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Power BI-like page navigation -->
+  <nav class="page-tabs" aria-label="Report pages">
+    <button class="page-tab active" data-target="overview">Experiment Overview</button>
+    <button class="page-tab" data-target="statistics">Statistical Evaluation</button>
+    <button class="page-tab" data-target="behavior">Behavioral Exploration</button>
+    <button class="page-tab" data-target="ux">UX Experiment Framework</button>
+    <span class="page-plus">＋</span>
+  </nav>
+
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-card">
+      <div class="spinner"></div>
+      <strong>Loading experiment evidence…</strong>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

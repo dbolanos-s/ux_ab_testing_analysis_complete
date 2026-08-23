@@ -1,0 +1,32 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>UX Experiment Flow</title><style>
+:root{
+  --canvas:#F3F2F1; --card:#FFFFFF; --border:#E1DFDD; --text:#252423;
+  --muted:#605E5C; --faint:#8A8886; --teal:#01B8AA; --blue:#118DFF;
+  --red:#E81123; --green:#107C10; --shadow:0 1.2px 3.6px rgba(0,0,0,.11),0 .3px .9px rgba(0,0,0,.07);
+  --sans:'Segoe UI','Segoe UI Web',Arial,sans-serif;
+}
+*{box-sizing:border-box} body{margin:0;background:var(--canvas);color:var(--text);font-family:var(--sans);}
+.report{width:1440px;min-height:900px;padding:24px 30px 30px;margin:0 auto;background:var(--canvas)}
+.header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:18px}
+.crumb{font-size:12px;color:var(--muted);margin-bottom:6px}.title{font-size:24px;font-weight:600;margin:0}.subtitle{font-size:12px;color:var(--muted);margin-top:4px}
+.tag{background:#fff;border:1px solid var(--border);padding:8px 12px;font-size:12px;color:var(--muted);box-shadow:var(--shadow)}
+.grid{display:grid;grid-template-columns:1fr 320px;gap:16px;align-items:start}
+.card{background:var(--card);border:1px solid transparent;box-shadow:var(--shadow);padding:18px;border-radius:2px}
+.card-title{font-size:13px;font-weight:600;margin-bottom:12px}.small{font-size:11.5px;color:var(--muted);line-height:1.5}.section{margin-bottom:16px}.section-title{font-size:13px;font-weight:600;margin-bottom:8px}
+.input{height:42px;border:1px solid #C8C6C4;background:#fff;border-radius:2px;padding:10px 12px;font-size:13px;color:#6B6A69;display:flex;align-items:center}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.summary-line{display:flex;justify-content:space-between;font-size:13px;padding:7px 0;border-bottom:1px solid #F0F0F0}.summary-line.total{font-weight:700;font-size:15px;border-top:1px solid var(--border);border-bottom:none;margin-top:5px;padding-top:12px}
+.product{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid #F0F0F0}.thumb{width:52px;height:52px;background:#EDEBE9;border:1px solid #D2D0CE}.product-name{font-size:12.5px;font-weight:600}.product-meta{font-size:11px;color:var(--muted);margin-top:4px}
+.cta{width:100%;height:46px;border-radius:2px;font-family:var(--sans);font-size:14px;font-weight:600;cursor:default;margin-top:14px}
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.meta{border:1px solid var(--border);padding:10px;background:#FAF9F8}.meta-label{font-size:10.5px;text-transform:uppercase;color:var(--faint);letter-spacing:.04em}.meta-value{font-size:13px;font-weight:600;margin-top:5px}
+.note{margin-top:14px;border-left:3px solid var(--blue);background:#F5FAFF;padding:10px 12px;font-size:11.5px;color:var(--muted);line-height:1.5}
+.footer{font-size:10.5px;color:var(--faint);margin-top:15px}
+
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}.kpi{background:#fff;box-shadow:var(--shadow);padding:16px}.kpi-label{font-size:11px;color:var(--muted)}.kpi-val{font-size:21px;margin-top:5px;font-weight:600}.flow{display:grid;grid-template-columns:170px 70px 190px 70px 190px 70px 220px;align-items:center;justify-content:center;gap:6px;margin-top:28px}.box{background:#fff;border:1px solid var(--border);box-shadow:var(--shadow);padding:18px;text-align:center;min-height:92px;display:flex;flex-direction:column;justify-content:center}.box strong{font-size:13px}.box span{font-size:11px;color:var(--muted);margin-top:5px}.arrow{text-align:center;font-size:26px;color:var(--teal)}.split{display:grid;grid-template-columns:1fr 1fr;gap:10px}.signal{border-left:4px solid var(--teal);background:#F7FFFD;padding:13px;margin-top:12px;font-size:12px;line-height:1.55}
+</style></head><body><div class="report"><div class="header"><div><div class="crumb">Portfolio / UX Experiment / Research Framework</div><h1 class="title">UX A/B Testing — Experiment Flow</h1><div class="subtitle">Power BI-style research summary for product and UX stakeholders</div></div><div class="tag">Conceptual UX Application</div></div>
+<div class="kpis"><div class="kpi"><div class="kpi-label">PRIMARY METRIC</div><div class="kpi-val">Checkout Completion</div></div><div class="kpi"><div class="kpi-label">SECONDARY</div><div class="kpi-val">Time on Task</div></div><div class="kpi"><div class="kpi-label">GUARDRAIL</div><div class="kpi-val">Error Rate</div></div><div class="kpi"><div class="kpi-label">USER EFFORT</div><div class="kpi-val">CES</div></div></div>
+<div class="card"><div class="card-title">Experiment Journey</div><div class="flow"><div class="box"><strong>Eligible Users</strong><span>Users entering checkout</span></div><div class="arrow">→</div><div class="box"><strong>Random Assignment</strong><span>Controlled allocation</span></div><div class="arrow">→</div><div class="box"><strong>A / B Exposure</strong><span>A: Baseline · B: Proposed CTA</span></div><div class="arrow">→</div><div class="box"><strong>Outcome Collection</strong><span>Completion, time, errors, effort</span></div></div>
+<div class="flow" style="grid-template-columns:190px 70px 190px 70px 220px"><div class="box"><strong>Statistical Evaluation</strong><span>Z-test · CI · uplift · effect size</span></div><div class="arrow">→</div><div class="box"><strong>Guardrail Review</strong><span>Errors · CES · accessibility</span></div><div class="arrow">→</div><div class="box"><strong>Product Decision</strong><span>Roll out · iterate · stop</span></div></div>
+<div class="signal"><strong>Decision principle:</strong> a statistically significant conversion improvement is not sufficient by itself. Rollout should also consider the confidence interval, absolute effect magnitude, guardrail metrics, practical value, and experiment validity.</div></div>
+<div class="card" style="margin-top:16px"><div class="card-title">Integrity Note</div><div class="small">The public dataset analyzed in Python compares an advertising treatment (`ad`) with a PSA control (`psa`). The checkout variants shown in this portfolio are a conceptual application of the same experiment-evaluation framework and are not presented as the source of the Kaggle observations.</div></div>
+</div></body></html>

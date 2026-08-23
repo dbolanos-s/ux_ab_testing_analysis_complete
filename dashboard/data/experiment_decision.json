@@ -1,0 +1,7 @@
+{
+  "alpha": 0.05,
+  "primary_test": "two-proportion z-test",
+  "decision": "Reject H0",
+  "statistically_significant": true,
+  "methodological_note": "Causal interpretation depends on confirmation of the original randomization mechanism and intended allocation ratio."
+}
