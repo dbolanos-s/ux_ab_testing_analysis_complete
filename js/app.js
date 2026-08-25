@@ -36,22 +36,33 @@ function parseCsv(text) {
 }
 
 async function fetchWithFallback(filename, isJson = false) {
+  // index.html vive en la raíz del repositorio, por lo que la ruta correcta
+  // es data/processed/. Las otras rutas cubren el caso de servir el dashboard
+  // desde una subcarpeta.
   const paths = [
+    `data/processed/${filename}`,
     `../data/processed/${filename}`,
-    `data/${filename}`
+    `./data/processed/${filename}`
   ];
 
-  let lastError = null;
   for (const path of paths) {
     try {
       const response = await fetch(path, { cache: "no-store" });
-      if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+      if (!response.ok) continue;
       return isJson ? await response.json() : parseCsv(await response.text());
     } catch (err) {
-      lastError = err;
+      // Con file:// fetch lanza por CORS; seguimos al respaldo embebido.
     }
   }
-  throw lastError ?? new Error(`Could not load ${filename}`);
+
+  // Respaldo: datos embebidos en js/data-embedded.js
+  const key = filename.replace(/\.(csv|json)$/, "");
+  if (window.EMBEDDED_DATA && window.EMBEDDED_DATA[key]) {
+    console.warn(`No se pudo leer ${filename} por HTTP. Usando datos embebidos.`);
+    return window.EMBEDDED_DATA[key];
+  }
+
+  throw new Error(`No se pudo cargar ${filename}`);
 }
 
 async function loadData() {
@@ -481,7 +492,10 @@ async function init() {
     console.error(error);
     document.querySelector(".loading-card").innerHTML =
       `<strong>Dashboard data could not be loaded.</strong>
-       <span style="font-size:11px;color:#605e5c">Run the project through an HTTP server and keep the data files in place.</span>`;
+       <span style="font-size:11px;color:#605e5c">
+         Expected files in <code>data/processed/</code>.<br>
+         Detail: ${error.message}
+       </span>`;
     return;
   }
 

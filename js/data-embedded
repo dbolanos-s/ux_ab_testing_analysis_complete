@@ -1,0 +1,431 @@
+/*
+ * Respaldo de datos embebidos.
+ * Generado desde data/processed/ por src/analysis.py.
+ * Permite que el dashboard funcione al abrir index.html directamente (file://),
+ * donde el navegador bloquea fetch() por CORS.
+ * app.js siempre intenta primero cargar los archivos reales por HTTP.
+ */
+window.EMBEDDED_DATA = {
+  "experiment_summary": [
+    {
+      "test_group": "ad",
+      "users": 564577,
+      "conversions": 14423,
+      "conversion_rate": 0.025546559636683747,
+      "conversion_rate_pct": 2.5546559636683748
+    },
+    {
+      "test_group": "psa",
+      "users": 23524,
+      "conversions": 420,
+      "conversion_rate": 0.01785410644448223,
+      "conversion_rate_pct": 1.785410644448223
+    }
+  ],
+  "statistical_results": [
+    {
+      "metric": "treatment_conversion_rate",
+      "value": 0.025546559636683747
+    },
+    {
+      "metric": "control_conversion_rate",
+      "value": 0.01785410644448223
+    },
+    {
+      "metric": "absolute_uplift",
+      "value": 0.007692453192201517
+    },
+    {
+      "metric": "relative_uplift",
+      "value": 0.43085064022225833
+    },
+    {
+      "metric": "risk_ratio",
+      "value": 1.4308506402222583
+    },
+    {
+      "metric": "risk_ratio_ci_low",
+      "value": 1.2996965810628216
+    },
+    {
+      "metric": "risk_ratio_ci_high",
+      "value": 1.5752396247362963
+    },
+    {
+      "metric": "z_statistic",
+      "value": 7.3700781265454145
+    },
+    {
+      "metric": "z_p_value",
+      "value": 1.7052807161559727e-13
+    },
+    {
+      "metric": "chi_square",
+      "value": 54.005823883685245
+    },
+    {
+      "metric": "chi_square_p_value",
+      "value": 1.9989623063390075e-13
+    },
+    {
+      "metric": "chi_square_dof",
+      "value": 1.0
+    },
+    {
+      "metric": "ci_difference_low",
+      "value": 0.0059509324316110055
+    },
+    {
+      "metric": "ci_difference_high",
+      "value": 0.009433973952792028
+    },
+    {
+      "metric": "bootstrap_ci_low",
+      "value": 0.005956504441920961
+    },
+    {
+      "metric": "bootstrap_ci_high",
+      "value": 0.009389434551924597
+    },
+    {
+      "metric": "cohen_h",
+      "value": 0.053002578606030915
+    },
+    {
+      "metric": "observed_power",
+      "value": 0.9999999990438161
+    },
+    {
+      "metric": "required_equal_sample_80_power",
+      "value": 5588.0
+    },
+    {
+      "metric": "logistic_odds_ratio",
+      "value": 1.4421459480519425
+    },
+    {
+      "metric": "logistic_or_ci_low",
+      "value": 1.3076406923586403
+    },
+    {
+      "metric": "logistic_or_ci_high",
+      "value": 1.5904865515704094
+    }
+  ],
+  "exposure_analysis": [
+    {
+      "exposure_band": "1-10",
+      "users": 260775,
+      "conversions": 858,
+      "conversion_rate": 0.003290192694851884,
+      "avg_ads": 4.2045479819768,
+      "conversion_rate_pct": 0.3290192694851884
+    },
+    {
+      "exposure_band": "11-25",
+      "users": 169247,
+      "conversions": 1720,
+      "conversion_rate": 0.010162661671994186,
+      "avg_ads": 17.20348366588477,
+      "conversion_rate_pct": 1.0162661671994186
+    },
+    {
+      "exposure_band": "26-50",
+      "users": 89013,
+      "conversions": 3124,
+      "conversion_rate": 0.035095997213890104,
+      "avg_ads": 35.48240144697966,
+      "conversion_rate_pct": 3.5095997213890104
+    },
+    {
+      "exposure_band": "51-100",
+      "users": 46002,
+      "conversions": 5242,
+      "conversion_rate": 0.11395156732315986,
+      "avg_ads": 69.38489630885614,
+      "conversion_rate_pct": 11.395156732315986
+    },
+    {
+      "exposure_band": "100+",
+      "users": 23064,
+      "conversions": 3899,
+      "conversion_rate": 0.1690513354144988,
+      "avg_ads": 183.7870274020118,
+      "conversion_rate_pct": 16.905133541449878
+    }
+  ],
+  "conversion_by_day": [
+    {
+      "most_ads_day": "Monday",
+      "users": 87073,
+      "conversions": 2857,
+      "conversion_rate": 0.03281154893020798,
+      "avg_ads": 25.328517450874553,
+      "conversion_rate_pct": 3.281154893020798
+    },
+    {
+      "most_ads_day": "Tuesday",
+      "users": 77479,
+      "conversions": 2312,
+      "conversion_rate": 0.029840343835103707,
+      "avg_ads": 23.9254636740278,
+      "conversion_rate_pct": 2.984034383510371
+    },
+    {
+      "most_ads_day": "Wednesday",
+      "users": 80908,
+      "conversions": 2018,
+      "conversion_rate": 0.02494190932911455,
+      "avg_ads": 24.539205022989073,
+      "conversion_rate_pct": 2.494190932911455
+    },
+    {
+      "most_ads_day": "Thursday",
+      "users": 82982,
+      "conversions": 1790,
+      "conversion_rate": 0.02157094309609313,
+      "avg_ads": 23.42885204020149,
+      "conversion_rate_pct": 2.1570943096093127
+    },
+    {
+      "most_ads_day": "Friday",
+      "users": 92608,
+      "conversions": 2057,
+      "conversion_rate": 0.02221190393918452,
+      "avg_ads": 26.61212854181064,
+      "conversion_rate_pct": 2.221190393918452
+    },
+    {
+      "most_ads_day": "Saturday",
+      "users": 81660,
+      "conversions": 1719,
+      "conversion_rate": 0.021050698016164583,
+      "avg_ads": 25.227663482733284,
+      "conversion_rate_pct": 2.1050698016164584
+    },
+    {
+      "most_ads_day": "Sunday",
+      "users": 85391,
+      "conversions": 2090,
+      "conversion_rate": 0.024475647316461922,
+      "avg_ads": 24.403660807345037,
+      "conversion_rate_pct": 2.4475647316461924
+    }
+  ],
+  "conversion_by_hour": [
+    {
+      "most_ads_hour": 0,
+      "users": 5536,
+      "conversions": 102,
+      "conversion_rate": 0.01842485549132948,
+      "avg_ads": 22.778901734104046,
+      "conversion_rate_pct": 1.8424855491329482
+    },
+    {
+      "most_ads_hour": 1,
+      "users": 4802,
+      "conversions": 62,
+      "conversion_rate": 0.012911286963765098,
+      "avg_ads": 25.179925031236984,
+      "conversion_rate_pct": 1.2911286963765098
+    },
+    {
+      "most_ads_hour": 2,
+      "users": 5333,
+      "conversions": 39,
+      "conversion_rate": 0.007312957059816239,
+      "avg_ads": 24.770110631914495,
+      "conversion_rate_pct": 0.7312957059816239
+    },
+    {
+      "most_ads_hour": 3,
+      "users": 2679,
+      "conversions": 28,
+      "conversion_rate": 0.010451661067562523,
+      "avg_ads": 22.730869727510264,
+      "conversion_rate_pct": 1.0451661067562523
+    },
+    {
+      "most_ads_hour": 4,
+      "users": 722,
+      "conversions": 11,
+      "conversion_rate": 0.015235457063711912,
+      "avg_ads": 33.41274238227147,
+      "conversion_rate_pct": 1.5235457063711912
+    },
+    {
+      "most_ads_hour": 5,
+      "users": 765,
+      "conversions": 16,
+      "conversion_rate": 0.02091503267973856,
+      "avg_ads": 43.64836601307189,
+      "conversion_rate_pct": 2.091503267973856
+    },
+    {
+      "most_ads_hour": 6,
+      "users": 2068,
+      "conversions": 46,
+      "conversion_rate": 0.022243713733075435,
+      "avg_ads": 41.843326885880074,
+      "conversion_rate_pct": 2.2243713733075436
+    },
+    {
+      "most_ads_hour": 7,
+      "users": 6405,
+      "conversions": 116,
+      "conversion_rate": 0.018110850897736144,
+      "avg_ads": 31.215456674473067,
+      "conversion_rate_pct": 1.8110850897736144
+    },
+    {
+      "most_ads_hour": 8,
+      "users": 17627,
+      "conversions": 344,
+      "conversion_rate": 0.019515515969819028,
+      "avg_ads": 24.039655074601463,
+      "conversion_rate_pct": 1.9515515969819028
+    },
+    {
+      "most_ads_hour": 9,
+      "users": 31004,
+      "conversions": 595,
+      "conversion_rate": 0.019191072119726486,
+      "avg_ads": 23.486840407689332,
+      "conversion_rate_pct": 1.9191072119726487
+    },
+    {
+      "most_ads_hour": 10,
+      "users": 38939,
+      "conversions": 838,
+      "conversion_rate": 0.021520840288656615,
+      "avg_ads": 25.251727060273762,
+      "conversion_rate_pct": 2.1520840288656617
+    },
+    {
+      "most_ads_hour": 11,
+      "users": 46210,
+      "conversions": 1022,
+      "conversion_rate": 0.022116425016230252,
+      "avg_ads": 24.902531919497942,
+      "conversion_rate_pct": 2.2116425016230252
+    },
+    {
+      "most_ads_hour": 12,
+      "users": 47298,
+      "conversions": 1127,
+      "conversion_rate": 0.02382764598925959,
+      "avg_ads": 26.116453126982112,
+      "conversion_rate_pct": 2.382764598925959
+    },
+    {
+      "most_ads_hour": 13,
+      "users": 47655,
+      "conversions": 1176,
+      "conversion_rate": 0.024677368586717027,
+      "avg_ads": 25.593851642010282,
+      "conversion_rate_pct": 2.4677368586717026
+    },
+    {
+      "most_ads_hour": 14,
+      "users": 45648,
+      "conversions": 1281,
+      "conversion_rate": 0.028062565720294426,
+      "avg_ads": 24.285532772520153,
+      "conversion_rate_pct": 2.806256572029443
+    },
+    {
+      "most_ads_hour": 15,
+      "users": 44683,
+      "conversions": 1325,
+      "conversion_rate": 0.02965333572052011,
+      "avg_ads": 25.359353669180674,
+      "conversion_rate_pct": 2.965333572052011
+    },
+    {
+      "most_ads_hour": 16,
+      "users": 37567,
+      "conversions": 1156,
+      "conversion_rate": 0.030771687917587245,
+      "avg_ads": 22.36848830090239,
+      "conversion_rate_pct": 3.0771687917587243
+    },
+    {
+      "most_ads_hour": 17,
+      "users": 34988,
+      "conversions": 987,
+      "conversion_rate": 0.028209671887504287,
+      "avg_ads": 24.250800274379788,
+      "conversion_rate_pct": 2.8209671887504286
+    },
+    {
+      "most_ads_hour": 18,
+      "users": 32323,
+      "conversions": 885,
+      "conversion_rate": 0.027379884292918356,
+      "avg_ads": 25.522600006187545,
+      "conversion_rate_pct": 2.7379884292918355
+    },
+    {
+      "most_ads_hour": 19,
+      "users": 30352,
+      "conversions": 811,
+      "conversion_rate": 0.026719820769636266,
+      "avg_ads": 25.522370848708487,
+      "conversion_rate_pct": 2.6719820769636264
+    },
+    {
+      "most_ads_hour": 20,
+      "users": 28923,
+      "conversions": 862,
+      "conversion_rate": 0.029803270753379664,
+      "avg_ads": 26.380942502506656,
+      "conversion_rate_pct": 2.9803270753379665
+    },
+    {
+      "most_ads_hour": 21,
+      "users": 29976,
+      "conversions": 867,
+      "conversion_rate": 0.028923138510808646,
+      "avg_ads": 25.55574459567654,
+      "conversion_rate_pct": 2.8923138510808646
+    },
+    {
+      "most_ads_hour": 22,
+      "users": 26432,
+      "conversions": 690,
+      "conversion_rate": 0.026104721549636802,
+      "avg_ads": 22.918205205811137,
+      "conversion_rate_pct": 2.6104721549636802
+    },
+    {
+      "most_ads_hour": 23,
+      "users": 20166,
+      "conversions": 457,
+      "conversion_rate": 0.02266190617871665,
+      "avg_ads": 20.197709015174055,
+      "conversion_rate_pct": 2.2661906178716653
+    }
+  ],
+  "data_quality": {
+    "rows": 588101,
+    "unique_users": 588101,
+    "duplicate_rows": 0,
+    "duplicate_user_ids": 0,
+    "missing_values": 0,
+    "groups": [
+      "ad",
+      "psa"
+    ],
+    "converted_values": [
+      0,
+      1
+    ]
+  },
+  "experiment_decision": {
+    "alpha": 0.05,
+    "primary_test": "two-proportion z-test",
+    "decision": "Reject H0",
+    "statistically_significant": true,
+    "methodological_note": "The CSV does not document the original randomization mechanism or the intended treatment/control allocation ratio. Statistical evidence is strong, but causal interpretation depends on the original experiment design."
+  }
+};
