@@ -8,11 +8,7 @@ This framework defines the behavioral and usability metrics that should be speci
 
 ### Checkout Completion Rate
 
-$$
-\text{Checkout Completion Rate}
-=
-\frac{\text{Completed Checkouts}}{\text{Users Starting Checkout}}
-$$
+**Checkout Completion Rate = Completed Checkouts ÷ Users Starting Checkout**
 
 This is the primary behavioral outcome used to evaluate whether Variant B improves completion of the critical flow.
 
@@ -20,23 +16,13 @@ This is the primary behavioral outcome used to evaluate whether Variant B improv
 
 ### Task Completion Rate
 
-$$
-\text{Task Completion Rate}
-=
-\frac{\text{Successfully Completed Tasks}}{\text{Total Attempted Tasks}}
-$$
+**Task Completion Rate = Successfully Completed Tasks ÷ Total Attempted Tasks**
 
 This metric provides a direct usability-success measure.
 
 ### Time on Task
 
-$$
-\text{Time on Task}
-=
-\text{Task End Time}
--
-\text{Task Start Time}
-$$
+**Time on Task = Task End Time − Task Start Time**
 
 Time should be interpreted together with task success. A shorter time is not automatically better if it results from abandonment or errors.
 
@@ -44,11 +30,7 @@ Time should be interpreted together with task success. A shorter time is not aut
 
 ### Error Rate
 
-$$
-\text{Error Rate}
-=
-\frac{\text{Observed Interaction Errors}}{\text{Task Attempts}}
-$$
+**Error Rate = Observed Interaction Errors ÷ Task Attempts**
 
 The proposed design should not improve conversion by introducing more errors.
 
@@ -60,12 +42,7 @@ CES is used as a user-perception guardrail rather than as a replacement for beha
 
 ### Abandonment Rate
 
-$$
-\text{Abandonment Rate}
-=
-1-
-\text{Checkout Completion Rate}
-$$
+**Abandonment Rate = 1 − Checkout Completion Rate**
 
 ### Accessibility Guardrail
 
