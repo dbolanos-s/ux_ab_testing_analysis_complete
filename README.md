@@ -15,10 +15,10 @@ El proyecto integra **Python, Pandas, NumPy, SciPy, Statsmodels, inferencia esta
 [Framework de métricas](research/metric_framework.md) ·
 [Hallazgos del experimento](research/experiment_findings.md) ·
 [Diseño UX](design/README.md) ·
-[Dashboard](dashboard/) ·
+[Dashboard](https://dbolanos-s.github.io/ux_ab_testing_analysis_complete/) ·
 [Guía de pruebas](GITHUB_TESTING.md)
 
-**Dashboard en vivo:** `https://dbolanos-s.github.io/ux_ab_testing_analysis_complete/`
+**Dashboard en vivo:** [Dashboard](https://dbolanos-s.github.io/ux_ab_testing_analysis_complete/)
 
 ---
 
