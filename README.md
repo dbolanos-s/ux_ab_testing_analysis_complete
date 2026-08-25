@@ -83,7 +83,8 @@ El reporte contiene cuatro páginas analíticas:
 
 ## 1. Resumen del Experimento
 
-![Resumen del Experimento](images/dashboard-overview.png)
+<img width="1777" height="996" alt="image" src="https://github.com/user-attachments/assets/bf46f461-0aae-4aa6-b22c-65a32d3bfbee" />
+
 
 La primera página presenta los principales KPIs del experimento:
 
@@ -102,7 +103,8 @@ Esta página funciona como resumen ejecutivo antes de profundizar en la evidenci
 
 ## 2. Evaluación Estadística
 
-![Evaluación Estadística](images/dashboard-statistics.png)
+<img width="1887" height="893" alt="image" src="https://github.com/user-attachments/assets/645efb9f-89e3-46bd-9f2e-cc9b1b9b3650" />
+
 
 Esta página presenta:
 
@@ -121,7 +123,7 @@ El dashboard diferencia explícitamente entre **significancia estadística y sig
 
 ## 3. Exploración Conductual
 
-![Exploración Conductual](images/dashboard-behavior.png)
+<img width="1538" height="957" alt="image" src="https://github.com/user-attachments/assets/1fe15117-098a-4d5e-ab31-e60d0e7da973" />
 
 Esta sección explora el comportamiento observado según:
 
@@ -140,7 +142,10 @@ Estos análisis se consideran **descriptivos y no causales**, ya que la cantidad
 
 ## 4. Framework de Experimento UX
 
-![Framework UX](images/dashboard-ux-framework.png)
+
+<img width="1912" height="967" alt="image" src="https://github.com/user-attachments/assets/1a87bbc0-af13-4411-acd7-a4cd34cd519e" />
+
+
 
 La última página del dashboard traslada el framework estadístico a un experimento UX conceptual.
 
@@ -421,7 +426,6 @@ Existe evidencia estadística fuerte de que las probabilidades de conversión ob
 
 ## Evidencia en el notebook
 
-![Prueba de Hipótesis en Notebook](images/notebook-hypothesis-test.png)
 
 El notebook documenta las fórmulas, supuestos, cálculos, código, resultados e interpretación utilizados para llegar a la decisión experimental.
 
