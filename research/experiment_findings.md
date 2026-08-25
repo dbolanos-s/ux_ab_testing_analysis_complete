@@ -13,12 +13,7 @@ The public A/B dataset contains **588,101 users**.
 
 The observed absolute difference is:
 
-$$
-\hat{\Delta}
-=
-\hat{p}_T-
-\hat{p}_C
-$$
+**Δ̂ = p̂_T − p̂_C**
 
 The analysis estimates:
 
@@ -33,11 +28,11 @@ The relative uplift should not be interpreted as a 43 percentage-point increase.
 The two-proportion Z-test produced:
 
 - **Z statistic:** 7.3701.
-- **p-value:** $1.7053 \times 10^{-13}$.
+- **p-value:** 1.7053 × 10⁻¹³.
 
-At $\alpha=0.05$, the statistical decision is:
+At α = 0.05, the statistical decision is:
 
-> **Reject $H_0$.**
+> **Reject H₀.**
 
 The observed conversion rates differ statistically between the treatment and control groups.
 
@@ -45,20 +40,17 @@ The observed conversion rates differ statistically between the treatment and con
 
 The 95% confidence interval for the absolute treatment-control difference is approximately:
 
-$$
-[0.5951,\;0.9434]
-\text{ percentage points}
-$$
+**[0.5951, 0.9434] percentage points**
 
 The interval does not include zero.
 
 ## Supporting Evidence
 
 - **Chi-square:** 54.0058.
-- **Chi-square p-value:** $1.9990 \times 10^{-13}$.
+- **Chi-square p-value:** 1.9990 × 10⁻¹³.
 - **Risk Ratio 95% CI:** [1.2997, 1.5752].
 - **Bootstrap 95% CI:** [0.5967, 0.9421] percentage points.
-- **Cohen's $h$:** 0.0530.
+- **Cohen's h:** 0.0530.
 - **Observed post-hoc power:** approximately 1.00.
 - **Treatment logistic odds ratio:** 1.4421.
 - **Odds Ratio 95% CI:** [1.3076, 1.5905].
@@ -69,11 +61,7 @@ The statistical evidence is strong, but the standardized effect size is small.
 
 This illustrates a core experimentation principle:
 
-$$
-\text{Statistical Significance}
-\neq
-\text{Practical Significance}
-$$
+> **Statistical Significance ≠ Practical Significance**
 
 A product decision should therefore consider the absolute effect magnitude, uncertainty, implementation cost, guardrails, and experiment validity rather than relying only on the p-value.
 
