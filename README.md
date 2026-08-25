@@ -934,7 +934,8 @@ Cada `push` o `pull request` hacia `main` ejecuta automáticamente:
 
 ## Validación exitosa
 
-![Validación GitHub Actions](images/github-actions-validation.png)
+<img width="1900" height="917" alt="image" src="https://github.com/user-attachments/assets/a54f43ad-0304-4118-a88c-96c3b231fb8e" />
+
 
 Una ejecución exitosa de GitHub Actions demuestra que el flujo analítico puede reproducirse fuera del entorno local de desarrollo.
 
