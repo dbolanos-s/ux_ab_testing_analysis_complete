@@ -18,7 +18,7 @@ El proyecto integra **Python, Pandas, NumPy, SciPy, Statsmodels, inferencia esta
 [Dashboard](dashboard/) ·
 [Guía de pruebas](GITHUB_TESTING.md)
 
-**Dashboard en vivo:** `AGREGAR_AQUI_URL_GITHUB_PAGES`
+**Dashboard en vivo:** `https://dbolanos-s.github.io/ux_ab_testing_analysis_complete/`
 
 ---
 
