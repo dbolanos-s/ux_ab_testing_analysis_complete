@@ -19,102 +19,110 @@ One row represents one user.
 
 The outcome is binary:
 
-$$
-Y_i =
-\begin{cases}
-1, & \text{if user } i \text{ converted} \\
-0, & \text{otherwise}
-\end{cases}
-$$
+```
+Y_i = { 1,  if user i converted
+      { 0,  otherwise
+```
 
 ### Primary Metric
 
-For group $g$:
+For group `g`, the conversion rate is:
 
-$$
-\hat{p}_g = \frac{x_g}{n_g}
-$$
+```
+p̂_g = x_g / n_g
+```
 
-where $x_g$ is the number of converted users and $n_g$ is the number of users in the group.
+where:
+- `x_g` = number of converted users in group g
+- `n_g` = total number of users in group g
 
 ### Hypotheses
 
-$$
-H_0: p_T = p_C
-$$
+**Null hypothesis (H₀):**
+```
+p_T = p_C
+```
+The conversion probability is equal between treatment and control.
 
-$$
-H_1: p_T \neq p_C
-$$
+**Alternative hypothesis (H₁):**
+```
+p_T ≠ p_C
+```
+The conversion probabilities differ between groups.
 
-with:
-
-$$
-\alpha = 0.05
-$$
+**Significance level:** α = 0.05 (two-tailed test)
 
 ### Primary Statistical Test
 
-A **two-proportion Z-test** is used because the response variable is binary and the primary comparison is between two independent conversion proportions.
+A **two-proportion Z-test** is used because:
+- The response variable is binary (converted or not)
+- We're comparing two independent groups
+- Sample sizes are large (n > 100 per group)
 
 ### Supporting Evidence
 
 The experiment evaluation also includes:
 
-- 95% confidence interval for the absolute difference;
-- absolute and relative uplift;
-- risk ratio and confidence interval;
-- Chi-square consistency check;
-- Cohen's $h$ effect size;
-- bootstrap confidence interval;
-- statistical power;
-- treatment-only logistic regression and odds ratio.
+- **95% Confidence Interval** for the absolute difference in conversion rates
+- **Absolute Uplift** (percentage point difference)
+- **Relative Uplift** (percentage increase relative to control)
+- **Risk Ratio** with confidence interval
+- **Chi-square test** for consistency check
+- **Cohen's h** standardized effect size
+- **Bootstrap confidence interval** for robustness
+- **Statistical Power** (post-hoc)
+- **Logistic Odds Ratio** from treatment-only regression
 
 ## 2. Decision Framework
 
-A product decision should combine more than statistical significance:
+A product decision should combine multiple pieces of evidence:
 
-$$
-\text{Decision Quality}
-=
-\text{Statistical Evidence}
-+
-\text{Effect Magnitude}
-+
-\text{Uncertainty}
-+
-\text{Validity}
-+
-\text{Guardrails}
-$$
+```
+Decision Quality = 
+  Statistical Evidence 
+  + Effect Magnitude 
+  + Uncertainty bounds 
+  + Experiment Validity 
+  + Business Guardrails
+```
 
-The statistical rule is:
+**Statistical rule:**
+```
+Reject H₀ if p-value < 0.05
+```
 
-$$
-\text{Reject } H_0 \text{ if } p < 0.05
-$$
-
-but this is not, by itself, a rollout rule.
+**Important:** Statistical significance is necessary but not sufficient. 
+The rollout decision must also account for effect size, confidence intervals, validity threats, and business impact.
 
 ## 3. Allocation Limitation
 
-The dataset is highly imbalanced between `ad` and `psa`.
+The dataset shows a **highly imbalanced** allocation:
+- Treatment (`ad`): ~564k users
+- Control (`psa`): ~24k users
+- Ratio: ~24:1 (not balanced)
 
-A formal Sample Ratio Mismatch conclusion requires the **intended allocation ratio**. The CSV does not document that ratio, so the project does not assume a 50/50 design and does not label the imbalance as an SRM failure.
+**Note on Sample Ratio Mismatch (SRM):**
+A formal SRM evaluation requires the **intended randomization ratio**. The dataset does not document this, so we treat the observed imbalance as a data artifact rather than labeling it as an SRM failure.
 
 ## 4. UX Experiment Transfer
 
+This project demonstrates how the statistical framework above can be applied to a UX feature experiment.
+
 ### UX Research Objective
 
-Evaluate whether increasing the visual prominence and action clarity of the primary checkout CTA can improve checkout completion without increasing user effort or errors.
+Evaluate whether increasing the visual prominence and action clarity of the primary checkout CTA will improve checkout completion without increasing user effort or errors.
 
 ### Variant A — Baseline
 
-Baseline checkout experience with neutral CTA emphasis and generic action wording.
+Baseline checkout experience with:
+- Neutral CTA emphasis
+- Generic action wording
 
 ### Variant B — Proposed
 
-The same checkout flow with a more prominent CTA and explicit next-step wording.
+Same checkout flow with:
+- More prominent CTA button (larger, higher contrast)
+- Explicit next-step wording ("Complete Purchase" vs "Next")
 
 ### UX Hypothesis
 
@@ -122,21 +130,27 @@ The same checkout flow with a more prominent CTA and explicit next-step wording.
 
 ### UX Metrics
 
-**Primary**
-- Checkout Completion Rate.
+**Primary Metric**
+- Checkout Completion Rate (conversion)
 
-**Secondary**
-- Task Completion Rate.
-- Time on Task.
+**Secondary Metrics**
+- Task Completion Rate
+- Time on Task (should not increase)
 
-**Guardrails**
-- Error Rate.
-- Customer Effort Score (CES).
-- Accessibility issues.
-- Abandonment.
+**Guardrail Metrics** (protect against negative side effects)
+- Error Rate
+- Customer Effort Score (CES)
+- Accessibility compliance (WCAG violations)
+- Abandonment Rate
 
 ## 5. Integrity Statement
 
-The public marketing A/B dataset compares an advertising treatment with a PSA control.
+**Data source:** Public marketing A/B test (Kaggle) comparing an advertising treatment (`ad`) with a PSA control (`psa`).
 
-The UX variants in `design/` are a **conceptual demonstration** of how the statistical framework could be transferred to a UX feature experiment. The Kaggle observations are not presented as having been generated from these prototypes.
+**UX variants:** The checkout prototypes in `design/` are a **conceptual demonstration** of how the statistical framework can transfer to UX experimentation. These prototypes were not the source of the observed data—they illustrate the methodology.
+
+**No conflation:** This research project clearly separates:
+1. The empirical analysis of public marketing data
+2. The methodological transfer to a hypothetical UX experiment
+
+Both are presented as case studies in applied experimentation, not as evidence that the prototypes generated the public results.
